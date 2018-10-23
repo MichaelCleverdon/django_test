@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
    {% block title %} <title></title>{% endblock title %}
 </head>
 <body>
     {% block sidebar %}<a href="{% url 'index' %}">Index</a>{% endblock %}
     {% block sidebar2 %}<a href="{% url 'library' %}">Library</a>{% endblock %}
     {% block content %}{% endblock %}
-    {% block p %}Hi{% endblock %}
+    {% block p %}Welcome to my Django Page{% endblock %}
 
 </body>
 </html>

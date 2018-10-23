@@ -5,7 +5,7 @@ from django.views.generic import RedirectView
 from catalog import views
 
 urlpatterns = [
-    path('library/', views.library, name='library'),
+    path('library/', views.showpost, name='library'),
 
     url(r'^favicon\.ico$', RedirectView.as_view(url='static/images/favicon.ico')),
     path('', views.index, name='index'),

@@ -3,8 +3,26 @@
     <title>Library</title>
 </head>
 {% block content %}
-    {% if book_list %}
+  <form action="" method="POST">{% csrf_token %}
+  <label for="title">Title</label>
+  <input type="text" name="title"><br>
+  Content<br>
+  <textarea cols="35" rows="8" name="content">
+  </textarea><br>
+  <input type="submit" value="Post">
+  </form>
+
+    {% if alltitles %}
+        <table border="1">
+
+               {% for title in alltitles %}
+            <tr>
+
+                <td>{{ Post.title }}</td>
+                <td>{{ Post.content }}</td>
+
+            </tr>
+                   {% endfor %}
+        </table>
     {% endif %}
-
-
 {% endblock %}
