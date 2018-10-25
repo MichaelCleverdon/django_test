@@ -1,6 +1,7 @@
 from django.db import models
 from django.views import generic
 
+
 class MyModelName(models.Model):
     """A typical class defining a model, derived from the Model class."""
 
@@ -12,5 +13,5 @@ class MyModelName(models.Model):
 
 
 class Post(models.Model):
-    title=models.CharField(max_length=300, unique=True)
-    content=models.TextField()
+    title = models.CharField(max_length=300, unique=True)
+    content = models.TextField()
