@@ -22,19 +22,21 @@ def library(request):
 """Post creation, start of forms"""
 
 
-def createpost(request):
+def create_post(request):
     if request.method == "POST":
         if request.POST.get('title') and request.POST.get('content'):
             p = Post()
+            p.author = request.POST.get('author')
             p.title = request.POST.get('title')
-            p.content = request.POST.get('content')
+            p.text = request.POST.get('text')
+            p.created_date = request.POST.get('created_date')
             p.save()
             return render(request, 'library.html')
     else:
         return render(request, 'library.html')
 
 
-def showpost(request):
+def show_post(request):
     alltitles = Post.objects.all()
     #  allcontext = Post.context.all()
     context = {
@@ -57,7 +59,7 @@ class PostListView(generic.ListView):
 
 def postNew(request):
     form = PostForm()
-    return render(request, 'post_edit.html', {'form': form})
+    return render(request, 'new_post.html', {'form': form})
 
 
 def postDetail(request):

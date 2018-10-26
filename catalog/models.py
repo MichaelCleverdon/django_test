@@ -1,5 +1,11 @@
+import null as null
+from django.contrib import auth
+
 from django.db import models
-from django.views import generic
+from django.utils import timezone
+from django.contrib.auth.models import User
+
+from untitled1 import settings
 
 
 class MyModelName(models.Model):
@@ -7,11 +13,27 @@ class MyModelName(models.Model):
 
     # Fields
     my_field_name = models.CharField(max_length=20, help_text='Enter field documentation')
-    ...
+
 
     # Metadata
 
 
 class Post(models.Model):
+    author = models.ForeignKey('auth.user', db_column="user", on_delete=models.CASCADE, default=0,null=True)
     title = models.CharField(max_length=300, unique=True)
-    content = models.TextField()
+    text = models.TextField()
+    created_date = models.DateTimeField(
+        default=timezone.now
+    )
+    published_date = models.DateTimeField(
+        default=None,
+        blank=True, null=True
+
+    )
+
+    def publish(self):
+        self.published_date = timezone.now
+        self.save()
+
+    def __str__(self):
+        return self.title

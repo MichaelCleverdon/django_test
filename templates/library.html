@@ -3,7 +3,7 @@
     <title>Library</title>
 </head>
 {% block content %}
-  <form action="createpost" method="POST">{% csrf_token %}
+  <form action="create_post" method="POST">{% csrf_token %}
   <label for="title">Title</label>
   <input type="text" name="title"><br>
   Content<br>
