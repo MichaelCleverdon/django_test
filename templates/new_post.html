@@ -1,6 +1,7 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
      <form action="create_post" method="POST">{% csrf_token %}
   <label for="title">Title</label>
   <input type="text" name="title"><br>
@@ -9,8 +10,11 @@
   </textarea><br>
   <input type="submit" value="Post">
   </form>
-
+{% else %}
+    <p>You must be logged in to create a post</p>
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
 
 {% endblock %}
 
-<!-- TODO must finish making user login and create new page for displaying all entries-->
+<!-- TODO must finish making account registration page and create new page for displaying all entries-->

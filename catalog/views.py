@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+from django.utils import timezone
 
 from catalog.forms import PostForm
 from catalog.models import Post
@@ -14,37 +17,14 @@ def index(request):
     return render(request, 'index.html', context=None)
 
 
-def library(request):
-    context = None
-    return render(request, 'library.html', context=context)
-
-
 """Post creation, start of forms"""
 
 
-def create_post(request):
-    if request.method == "POST":
-        if request.POST.get('title') and request.POST.get('content'):
-            p = Post()
-            p.author = request.POST.get('author')
-            p.title = request.POST.get('title')
-            p.text = request.POST.get('text')
-            p.created_date = request.POST.get('created_date')
-            p.save()
-            return render(request, 'library.html')
-    else:
-        return render(request, 'library.html')
+def home(request):
+    return render(request, 'home.html', {})
 
 
-def show_post(request):
-    alltitles = Post.objects.all()
-    #  allcontext = Post.context.all()
-    context = {
-        'alltitles': alltitles
-    }
-    return render(request, 'library.html', context)
-
-
+"""
 class PostListView(generic.ListView):
     model = Post
     context_object_name = 'my_post_list'
@@ -55,11 +35,21 @@ class PostListView(generic.ListView):
 
         context['some_data'] = 'This is just some data'
         return context
+"""
 
 
 def postNew(request):
-    form = PostForm()
-    return render(request, 'new_post.html', {'form': form})
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'post_edit.html', {'form': form})
 
 
 def postDetail(request):
@@ -71,4 +61,18 @@ def postEdit(request):
         form = PostForm(request.POST)
     else:
         form = PostForm()
-    return render(request, 'postedit.html', {'form': form})
+    return render(request, 'post_edit.html', {'form': form})
+
+
+def create_account(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=raw_password)
+            login(request,user)
+    else:
+        form = UserCreationForm()
+    return render(request, 'create_account.html', {'form': form})
