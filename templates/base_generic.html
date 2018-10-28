@@ -5,9 +5,13 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'w3.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
-   {% block title %} <title></title>{% endblock %}
+   <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
+
+    {% block p %}Welcome to my first Django web page. <br>
+    By: Michael C
+    {% endblock %}
 
     {% block navbar %}
     <div class="w3-bar w3-border w3-card-4 w3-light-gray">
@@ -24,8 +28,7 @@
     {% endblock %}
 
 <br>
-    {% block content %}{% endblock %}
-    {% block p %}Welcome to my Django Page{% endblock %}
+ {% block content %}{% endblock %}
 
 </body>
 </html>

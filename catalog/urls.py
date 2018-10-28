@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^favicon\.ico$', RedirectView.as_view(url='static/images/favicon.ico')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('create_account', views.create_account, name='create_account'),
     path('', views.home, name='home'),
 
 ]

@@ -65,6 +65,7 @@ def postEdit(request):
 
 
 def create_account(request):
+
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -72,7 +73,8 @@ def create_account(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=raw_password)
-            login(request,user)
+
+            return redirect('login')
     else:
         form = UserCreationForm()
     return render(request, 'create_account.html', {'form': form})
