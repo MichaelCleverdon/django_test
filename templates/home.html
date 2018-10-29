@@ -1,7 +1,17 @@
 {% extends 'base_generic.html' %}
 {% block title %}Home{% endblock %}
 <br>
+{% block left %}
+    <ul>
+    {% for post in posts %}
 
+        <li>
+        <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
 {% block content %}
 
     {% if user.is_authenticated %}

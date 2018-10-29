@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import Q
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
@@ -23,7 +24,8 @@ def index(request):
 
 
 def home(request):
-    return render(request, 'home.html', {})
+    posts = Post.objects.all()
+    return render(request, 'home.html', {'posts': posts})
 
 
 """
@@ -99,3 +101,8 @@ def postEdit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'post_edit.html', {'form': form})
+
+
+def post_view(request, month, day):
+    posts = Post.objects.all().filter(Q(target_date__day=day) & Q(target_date__month=month))
+    return render(request, 'post_view.html', {'posts': posts})

@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'w3.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'grid.css' %}">
 <link href="https://fonts.googleapis.com/css?family=Anton|Bree+Serif|Chakra+Petch|Charmonman|Lobster|Mali|Pacifico|Patrick+Hand|Righteous|Teko" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
    <title>{% block title %} {% endblock %}</title>
 </head>
 
 <body>
-
+<div id="content">
+<div id="header">
     {% block p %}Welcome to my first Django web page. <br>
-    By: Michael C
+    By: Michael C and John H
     {% endblock %}
+
 
     {% block navbar %}
     <div class="w3-bar w3-border w3-card-4 w3-light-gray">
@@ -24,13 +27,14 @@
         {% else %}
         <a class="w3-bar-item w3-button w3-amber" style="float:right" href="{% url 'login' %}">Login</a>
         {% endif %}
-
-
     </div>
+        </div>
     {% endblock %}
 
 <br>
- {% block content %}{% endblock %}
-
+<div id="left">{% block left %}{% endblock %}</div>
+<div id="main">{% block content %}{% endblock %}</div>
+<div id="right">{% block right %}{% endblock %}</div>
+</div>
 </body>
 </html>
