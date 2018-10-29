@@ -6,14 +6,14 @@ from django.contrib import admin
 from catalog import views
 
 urlpatterns = [
-
-    path('post/<int:pk>/', views.postDetail, name='post_detail'),
+    path('post/<int:pk>/edit/', views.postEdit, name="post_edit"),
+    path('post/<int:pk>/', views.post_detail, name='post_detail'),
     path('post/new/', views.postNew, name='post_new'),
-    path('post/edit/', views.postEdit, name="post_edit"),
+
+    path('post/new/create_post', views.create_post, name='create_post'),
     url(r'^favicon\.ico$', RedirectView.as_view(url='static/images/favicon.ico')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('create_account', views.create_account, name='create_account'),
     path('', views.home, name='home'),
-
 ]

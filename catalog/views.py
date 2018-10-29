@@ -1,9 +1,11 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
+
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 
-from catalog.forms import PostForm
+from catalog.forms import PostForm, NewPost
 from catalog.models import Post
 from django.views import generic
 
@@ -38,13 +40,44 @@ class PostListView(generic.ListView):
 """
 
 
-def postNew(request):
+def create_account(request):
     if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=raw_password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                return redirect('login')
+
+
+    else:
+        form = UserCreationForm()
+    return render(request, 'create_account.html', {'form': form})
+
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'post_detail.html', {'post': post})
+
+
+@login_required(login_url='../../accounts/login/')
+def postNew(request, ):
+    form = PostForm()
+    return render(request, 'post_new.html', {'form': form})
+
+
+def create_post(request):
+    if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            post.published_date = timezone.now()
+            post.created_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
@@ -52,29 +85,17 @@ def postNew(request):
     return render(request, 'post_edit.html', {'form': form})
 
 
-def postDetail(request):
-    return None
-
-
-def postEdit(request):
+@login_required(login_url='accounts/login/')
+def postEdit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        form = PostForm(request.POST)
-    else:
-        form = PostForm()
-    return render(request, 'post_edit.html', {'form': form})
-
-
-def create_account(request):
-
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = PostForm(request.POST, instance=post)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=raw_password)
-
-            return redirect('login')
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
     else:
-        form = UserCreationForm()
-    return render(request, 'create_account.html', {'form': form})
+        form = PostForm(instance=post)
+    return render(request, 'post_edit.html', {'form': form})
