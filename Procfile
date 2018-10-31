@@ -1,1 +1,1 @@
-web: gunicorn untitled1.wsgi
+web: gunicorn catalog:app --preload
