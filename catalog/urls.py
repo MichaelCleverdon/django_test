@@ -6,7 +6,7 @@ from django.contrib import admin
 from catalog import views
 
 urlpatterns = [
-
+    path('post/<int:pk>/delete', views.post_delete, name='post_delete'),
     path('post/<int:month>/<int:day>', views.post_view, name='post_view'),
     # url(r'^(?P<month>[0-9]{4}/?P<day>[0-9]{2}$', views.post_view, name='post_view'),
     path('post/<int:pk>/edit', views.postEdit, name="post_edit"),

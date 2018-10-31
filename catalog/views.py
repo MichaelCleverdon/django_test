@@ -108,6 +108,11 @@ def post_view(request, month, day):
     return render(request, 'post_view.html', {'posts': posts})
 
 
+def post_delete(request, pk):
+    post = Post.objects.all().filter(pk=pk)
+    post.delete()
+    return redirect('home')
+
 def personalized_view(request, user):
     posts = Post.objects.all().filter(author=request.user)
     return render(request, 'personalized_view.html', {'posts': posts})
