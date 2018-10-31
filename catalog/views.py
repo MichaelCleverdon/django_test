@@ -106,3 +106,8 @@ def postEdit(request, pk):
 def post_view(request, month, day):
     posts = Post.objects.all().filter(Q(target_date__day=day) & Q(target_date__month=month))
     return render(request, 'post_view.html', {'posts': posts})
+
+
+def personalized_view(request, user):
+    posts = Post.objects.all().filter(author=request.user)
+    return render(request, 'personalized_view.html', {'posts': posts})
