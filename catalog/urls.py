@@ -14,7 +14,7 @@ urlpatterns = [
     path('post/new/', views.postNew, name='post_new'),
 
     path('post/new/create_post', views.create_post, name='create_post'),
-    url(r'^favicon\.ico$', RedirectView.as_view(url='static/images/favicon.ico')),
+    # url(r'^favicon\.ico$', RedirectView.as_view(url='static/images/favicon.ico')),
     path('/boy/admoon/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('create_account/', views.create_account, name='create_account'),
