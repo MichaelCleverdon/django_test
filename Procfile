@@ -1,1 +1,1 @@
-web: gunicorn catalog:app --preload
+web: gunicorn untitled1.wsgi --log-file-
