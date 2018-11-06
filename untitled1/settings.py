@@ -28,9 +28,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'd&=a9^^l_&su4c68(*ujzrg=si&dfw
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
 
 ALLOWED_HOSTS = [
-    'localhost',
-    'www.forum-django.herokuapp.com'
-    '127.0.0.1',
+
+    '*'
 ]
 
 # Application definition
