@@ -16,6 +16,8 @@ import os
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import dj_database_url
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +31,7 @@ DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
 
 ALLOWED_HOSTS = [
 
-    '*'
+    '.herokuapp.com'
 ]
 
 # Application definition
@@ -80,8 +82,12 @@ WSGI_APPLICATION = 'untitled1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'django_Testmanage'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django_Testmanage',
+        'USER': 'name',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -126,6 +132,8 @@ STATIC_ROOT = '/static/'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 # Configure Django App for Heroku.
 
 # django_heroku.settings(locals())
