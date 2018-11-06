@@ -34,7 +34,7 @@
           <entry key="Procfile" value="107" />
           <entry key="html" value="903" />
           <entry key="lock" value="10" />
-          <entry key="py" value="1383" />
+          <entry key="py" value="1388" />
           <entry key="py@untitled1" value="351" />
           <entry key="txt" value="518" />
         </counts>
@@ -44,7 +44,7 @@
           <entry key="CommandLine" value="181" />
           <entry key="HTML" value="903" />
           <entry key="PLAIN_TEXT" value="840" />
-          <entry key="Python" value="1566" />
+          <entry key="Python" value="1571" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -84,8 +84,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/untitled1/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+            <state relative-caret-position="484">
+              <caret line="127" column="70" selection-start-line="127" selection-start-column="70" selection-end-line="127" selection-end-column="70" />
             </state>
           </provider>
         </entry>
@@ -177,6 +177,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>middleware</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -209,10 +214,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="961" />
+  <component name="ProjectFrameBounds" extendedState="4">
     <option name="width" value="959" />
-    <option name="height" value="1073" />
+    <option name="height" value="1072" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -317,7 +321,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-1" width="1920" height="1073" extended-state="6" />
+    <frame x="0" y="0" width="959" height="1072" extended-state="4" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.13500534" />
@@ -335,7 +339,7 @@
       <window_info anchor="bottom" id="manage.py@untitled1" order="9" sideWeight="0.49893278" weight="0.32911393" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5010672" side_tool="true" weight="0.32911393" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32911393" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" visible="true" weight="0.32911393" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" visible="true" weight="0.32946146" />
       <window_info anchor="bottom" id="Python Console" order="13" weight="0.32911393" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -530,8 +534,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/untitled1/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
+        <state relative-caret-position="484">
+          <caret line="127" column="70" selection-start-line="127" selection-start-column="70" selection-end-line="127" selection-end-column="70" />
         </state>
       </provider>
     </entry>
