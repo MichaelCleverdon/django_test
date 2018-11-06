@@ -11,13 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-#import django_heroku
-
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import dj_database_url
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -30,8 +25,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'd&=a9^^l_&su4c68(*ujzrg=si&dfw
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
 ALLOWED_HOSTS = [
-
-    '*'
+    'localhost',
+    'www.michael-webdesign.website',
+    '127.0.0.1',
 ]
 
 # Application definition
@@ -82,12 +78,8 @@ WSGI_APPLICATION = 'untitled1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django_Testmanage',
-        'USER': 'name',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'django_Testmanage'),
     }
 }
 
@@ -122,18 +114,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/static/'
-
-
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-# Configure Django App for Heroku.
-
-# django_heroku.settings(locals())
